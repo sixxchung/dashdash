@@ -1,7 +1,7 @@
 import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.wsgi import WSGIMiddleware
-
+from fastapi.responses import RedirectResponse
 from dashapp import create_dash_app
 
 app = FastAPI()
