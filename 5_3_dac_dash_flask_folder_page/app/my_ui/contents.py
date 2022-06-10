@@ -1,18 +1,23 @@
-from dash import Dash, html, dcc
-import dash_admin_components as dac
-
-
 import sys
 import os
 sys.path.append(
     os.path.dirname(os.path.abspath(os.path.dirname(os.path.dirname(__file__))))
 ) 
+from dashPages.basic_cards.basic_cards import basic_cards_tab
+from dashPages.social_cards.social_cards import social_cards_tab
+from dashPages.tab_cards.tab_cards import tab_cards_tab
+from dashPages.basic_boxes.basic_boxes  import tab
+from dashPages.value_boxes.value_boxes  import value_boxes_tab
 
-from app.cards        import cards_tab
-from app.social_cards import social_cards_tab
-from app.tab_cards    import tab_cards_tab
-from app.basic_boxes  import basic_boxes_tab
-from app.value_boxes  import value_boxes_tab
+
+from dash import Dash, html, dcc
+import dash_admin_components as dac
+
+
+MENU_ITEMS = ("basic_cards", "social_cards", "tab_cards",
+              "basic_boxes", "value_boxes", "gallery_1", "gallery_2", "stock")
+
+
 
 
 # =============================================================================
@@ -22,15 +27,20 @@ from app.value_boxes  import value_boxes_tab
 # Body
 body = dac.Body(
     dac.TabItems([
-        cards_tab,
+        basic_cards_tab,
         social_cards_tab,
         tab_cards_tab,
-        basic_boxes_tab,
+        tab,
         value_boxes_tab,
-        dac.TabItem(html.P('Gallery 1 (You can add Dash Bootstrap Components!)'),
-                    id='content_gallery_1'),
-        dac.TabItem(html.P('Gallery 2 (You can add Dash Bootstrap Components!)'),
-                    id='content_gallery_2'),
+
+        dac.TabItem(  
+            children = html.P('Gallery 1 (You can add Dash Bootstrap Components!)'),
+            id = 'content_gallery_1'
+        ),
+        dac.TabItem(
+            children = html.P('Gallery 2 (You can add Dash Bootstrap Components!)'),
+            id='content_gallery_2'
+        ),
     ])
 )
 
