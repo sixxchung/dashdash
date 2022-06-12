@@ -43,7 +43,8 @@ controls = dbc.Card(
 )
 
 content = dac.TabItem(
-    [
+    id='content_gallery_1',
+    children=[
         html.H1("Iris k-means clustering"),
         html.Hr(),
         dbc.Row(
@@ -59,6 +60,5 @@ content = dac.TabItem(
             align="center",
         )
     ],
-    id='content_gallery_1',
 )
 

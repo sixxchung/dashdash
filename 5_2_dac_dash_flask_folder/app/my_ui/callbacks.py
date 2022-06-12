@@ -2,6 +2,9 @@ import dash
 from dash.dependencies import Input, Output
 from dash.exceptions import PreventUpdate
 
+from example_plots import plot_scatter
+from dashPages.tab_cards import text_1, text_2, text_3
+
 def activate(input_id,
              n_cards, n_social_cards, n_tab_cards, n_basic_boxes,
              n_value_boxes, n_gallery_1, n_gallery_2):
@@ -91,7 +94,7 @@ def get_callbacks(app):
                         n_cards, n_social_cards, n_tab_cards, n_basic_boxes, 
                         n_value_boxes, n_gallery_1, n_gallery_2)
 
-def get_callbacks_tab_in_boxes(app):  
+def get_callbacks_tab_in_boxes(app): 
     @app.callback(
         Output('tab_box_1', 'children'),
         [Input('tab_box_1_menu', 'active_tab')])
@@ -104,12 +107,10 @@ def get_callbacks_tab_in_boxes(app):
         elif active_tab == 'tab_box_1_tab3':
             return text_3
 
-
-    @app.callback(Output('tab_box_2', 'children'),
-                [Input('tab_box_2_menu', 'active_tab')]
-                )
+    @app.callback(
+        Output('tab_box_2', 'children'),
+        [Input('tab_box_2_menu', 'active_tab')] )
     def display_tabbox2(active_tab):
-
         # Depending on tab which triggered a callback, show/hide contents of app
         if active_tab == 'tab_box_2_tab1':
             return text_1
@@ -118,9 +119,15 @@ def get_callbacks_tab_in_boxes(app):
         elif active_tab == 'tab_box_2_tab3':
             return text_3
 
-    # Update figure on slider change
 
 
+
+
+
+
+
+
+# Update figure on slider change
 def get_callbacks_Basic_boxes(app):
     @app.callback(
         Output('box-graph', 'figure'),

@@ -3,7 +3,7 @@ from dash.dependencies import Input, Output
 from dash.exceptions import PreventUpdate
 
 MENU_ITEMS = ("basic_cards", "social_cards", "tab_cards",
-              "basic_boxes", "value_boxes", "gallery_1", "gallery_2", "stock")
+              "basic_boxes", "value_boxes", "gallery_1", "gallery_2")
 
 
 def activate(input_id,
@@ -31,24 +31,24 @@ def activate(input_id,
 # =============================================================================
 # Callbacks
 # =============================================================================
-def get_callbacks(app):
+def get_callbacks(app_dash):
     # -----------------------------------------------
     # -----------------------------------------------
-    @app.callback([Output('content_cards', 'active'),
-                   Output('content_social_cards', 'active'),
-                   Output('content_tab_cards', 'active'),
-                   Output('content_basic_boxes', 'active'),
-                   Output('content_value_boxes', 'active'),
-                   Output('content_gallery_1', 'active'),
-                   Output('content_gallery_2', 'active')],
-                  [Input('tab_cards', 'n_clicks'),
-                   Input('tab_social_cards', 'n_clicks'),
-                   Input('tab_tab_cards', 'n_clicks'),
-                   Input('tab_basic_boxes', 'n_clicks'),
-                   Input('tab_value_boxes', 'n_clicks'),
-                   Input('tab_gallery_1', 'n_clicks'),
-                   Input('tab_gallery_2', 'n_clicks')]
-                  )
+    @app_dash.callback([Output('content_basic_cards', 'active'),
+                        Output('content_social_cards', 'active'),
+                        Output('content_tab_cards', 'active'),
+                        Output('content_basic_boxes', 'active'),
+                        Output('content_value_boxes', 'active'),
+                        Output('content_gallery_1', 'active'),
+                        Output('content_gallery_2', 'active')],
+                       [Input('tab_cards', 'n_clicks'),
+                        Input('tab_social_cards', 'n_clicks'),
+                        Input('tab_tab_cards', 'n_clicks'),
+                        Input('tab_basic_boxes', 'n_clicks'),
+                        Input('tab_value_boxes', 'n_clicks'),
+                        Input('tab_gallery_1', 'n_clicks'),
+                        Input('tab_gallery_2', 'n_clicks')]
+                       )
     def display_tab(n_cards, n_social_cards, n_tab_cards, n_basic_boxes,
                     n_value_boxes, n_gallery_1, n_gallery_2):
         # Callback context to recognize which input has been triggered
@@ -66,21 +66,21 @@ def get_callbacks(app):
 
     # -----------------------------------------------
     # -----------------------------------------------
-    @app.callback([Output('tab_cards', 'active'),
-                   Output('tab_social_cards', 'active'),
-                   Output('tab_tab_cards', 'active'),
-                   Output('tab_basic_boxes', 'active'),
-                   Output('tab_value_boxes', 'active'),
-                   Output('tab_gallery_1', 'active'),
-                   Output('tab_gallery_2', 'active')],
-                  [Input('tab_cards',        'n_clicks'),
-                   Input('tab_social_cards', 'n_clicks'),
-                   Input('tab_tab_cards', 'n_clicks'),
-                   Input('tab_basic_boxes', 'n_clicks'),
-                   Input('tab_value_boxes', 'n_clicks'),
-                   Input('tab_gallery_1', 'n_clicks'),
-                   Input('tab_gallery_2', 'n_clicks')]
-                  )
+    @app_dash.callback([Output('tab_cards', 'active'),
+                        Output('tab_social_cards', 'active'),
+                        Output('tab_tab_cards', 'active'),
+                        Output('tab_basic_boxes', 'active'),
+                        Output('tab_value_boxes', 'active'),
+                        Output('tab_gallery_1', 'active'),
+                        Output('tab_gallery_2', 'active')],
+                       [Input('tab_cards',        'n_clicks'),
+                        Input('tab_social_cards', 'n_clicks'),
+                        Input('tab_tab_cards', 'n_clicks'),
+                        Input('tab_basic_boxes', 'n_clicks'),
+                        Input('tab_value_boxes', 'n_clicks'),
+                        Input('tab_gallery_1', 'n_clicks'),
+                        Input('tab_gallery_2', 'n_clicks')]
+                       )
     def activate_tab(n_cards, n_social_cards, n_tab_cards, n_basic_boxes,
                      n_value_boxes, n_gallery_1, n_gallery_2):
 
@@ -98,10 +98,4 @@ def get_callbacks(app):
                         n_value_boxes, n_gallery_1, n_gallery_2)
 
 
-# Update figure on slider change
-def get_callbacks_Basic_boxes(app):
-    @app.callback(
-        Output('box-graph', 'figure'),
-        [Input('controlbar-slider', 'value')])
-    def update_box_graph(value):
-        return plot_scatter(value)
+

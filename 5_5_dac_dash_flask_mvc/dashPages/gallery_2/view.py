@@ -5,7 +5,8 @@ import dash_admin_components as dac
 from dashPages.gallery_2.model import dataframe
 
 content = dac.TabItem(
-    [
+    id='content_gallery_2',
+    children=[
         html.H1("GDP viewer"),
         html.Hr(),
         dcc.Graph(id='graph-with-slider'),
@@ -18,5 +19,4 @@ content = dac.TabItem(
             step=None
         )
     ],
-    id='content_gallery_2',
 )
