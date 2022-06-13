@@ -17,6 +17,7 @@ def activate(input_id,
              basic_cards, social_cards, tab_cards, basic_boxes, value_boxes, gallery_1, gallery_2, stock ):
     menu_n = len(MENU_ITEMS)
     menu_status = [ False for i in range(menu_n)]
+    # input_id = 'tab_tab_cards'
     try:    
         menu_idx = MENU_ITEMS.index(input_id.split( '_', maxsplit=1)[1])    
         menu_status[menu_idx]=True

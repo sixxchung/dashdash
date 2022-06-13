@@ -5,7 +5,6 @@ from dash.exceptions import PreventUpdate
 MENU_ITEMS = ("basic_cards", "social_cards", "tab_cards",
               "basic_boxes", "value_boxes", "gallery_1", "gallery_2")
 
-
 def activate(input_id,
              n_cards, n_social_cards, n_tab_cards, n_basic_boxes,
              n_value_boxes, n_gallery_1, n_gallery_2):
@@ -59,7 +58,10 @@ def get_callbacks(app_dash):
             raise PreventUpdate
         else:
             input_id = ctx.triggered[0]['prop_id'].split('.')[0]
-
+        print("=11111=>=11111==11111==11111==11111==11111==11111==11111==1>")
+        print(activate(input_id,
+                       n_cards, n_social_cards, n_tab_cards, n_basic_boxes,
+                       n_value_boxes, n_gallery_1, n_gallery_2))
         return activate(input_id,
                         n_cards, n_social_cards, n_tab_cards, n_basic_boxes,
                         n_value_boxes, n_gallery_1, n_gallery_2)
@@ -92,6 +94,10 @@ def get_callbacks(app_dash):
             raise PreventUpdate
         else:
             input_id = ctx.triggered[0]['prop_id'].split('.')[0]
+        print("==>==>==>==>==>==>==>==>==>==>==>==>==>==>==>==>==>==>==>")
+        print(activate(input_id,
+                        n_cards, n_social_cards, n_tab_cards, n_basic_boxes,
+                        n_value_boxes, n_gallery_1, n_gallery_2))
 
         return activate(input_id,
                         n_cards, n_social_cards, n_tab_cards, n_basic_boxes,

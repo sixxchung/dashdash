@@ -7,7 +7,6 @@ from my_ui.view import navbar, sidebar, body, controlbar, footer
 import my_ui.callbacks as main
 import dashPages.tab_cards.callbacks as tab_cards
 
-#from example_plots import plot_scatter
 # =============================================================================
 # Dash App and Flask Server
 # =============================================================================

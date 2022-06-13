@@ -1,17 +1,9 @@
-from dash import Dash
+from dash import Dash, dcc, html
+from dash.dependencies import Input, Output
 import dash_admin_components as dac
 
-from my_ui.view import navbar, sidebar, body, controlbar, footer
-
-#from my_ui.callbacks import get_callbacks
-import my_ui.callbacks as main
-
-import dashPages.basic_boxes.callbacks as basic_boxes
-import dashPages.tab_cards.callbacks as tab_cards
-import dashPages.gallery_1.callbacks as gallery_1
-import dashPages.gallery_2.callbacks as gallery_2
-import dashPages.stock.callbacks as stock
-
+import callbacks
+import view
 # =============================================================================
 # Dash App and Flask Server
 # =============================================================================
@@ -21,20 +13,24 @@ server = app.server
 # =============================================================================
 # App Layout
 # =============================================================================
-app.layout = dac.Page([navbar, sidebar, body, controlbar, footer])
+app.layout = dac.Page([
+    dac.Navbar( dac.NavbarDropdown( dac.NavbarDropdownItem() ) ),
+    dac.Sidebar( dac.SidebarMenu([ dac.SidebarMenuItem(),  #id='tab_menu_a', label='A', icon='heart'),
+        ]), title='TEST'),
+    dac.Body( dac.TabItems( view.content ) ),
+    dac.Controlbar(),
+    dac.Footer()
+])
 
 # =============================================================================
-# Callback
-# =============================================================================
-main.get_callbacks(app)
-
-tab_cards.get_callbacks(app)
-basic_boxes.get_callbacks(app)
-
-gallery_1.get_callbacks(app)
-gallery_2.get_callbacks(app)
-
-#stock.get_callbacks(app)
+# # Callback
+# # =============================================================================
+# @app.callback(
+#       Output('tabitem_a_content', 'active'),
+#       Input('tab_menu_a', 'n_clicks'))
+# def display_tab(nClick):
+#     return True,True#, (True,True)
+callbacks.get_callbacks(app)
 
 # =============================================================================
 # Run app
