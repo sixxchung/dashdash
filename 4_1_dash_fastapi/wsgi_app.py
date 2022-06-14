@@ -9,8 +9,9 @@ urlPath_dash = '/dash'
 port_dash = 8050
 
 #------------------
-app_fastapi = FastAPI()
 app_dash = create_dash_app(requests_pathname_prefix=urlPath_dash)
+#------------------
+app_fastapi = FastAPI()
 app_fastapi.mount(urlPath_dash, WSGIMiddleware(app_dash.server))
 #app_fastapi.include_router(model_get.router)
 @app_fastapi.get("/")
