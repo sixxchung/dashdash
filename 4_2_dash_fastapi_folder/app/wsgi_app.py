@@ -5,14 +5,14 @@ from fastapi.middleware.wsgi import WSGIMiddleware
 from fastapi.responses import RedirectResponse
 
 #from app.dash_app import create_dash_app
-from dash_app import create_dash_app
+from . import dash_app 
 #from routers import model_get
 
 urlPath_dash = '/dash'
 port_dash = 8050
 
 #------------------
-app_dash = create_dash_app(requests_pathname_prefix=urlPath_dash)
+app_dash = dash_app.create_dash_app(requests_pathname_prefix=urlPath_dash)
 #------------------
 app_fastapi = FastAPI()
 app_fastapi.mount(urlPath_dash, WSGIMiddleware(app_dash.server))
