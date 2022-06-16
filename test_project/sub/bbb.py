@@ -1,11 +1,9 @@
 # sub/bbb.py
-b_var1 = 222
+from .aaa import multiply
 
-#### for main 
-from . import aaa
-b_var2 = b_var1 + aaa.a_var
+# from sub.aaa import multiply
+# from aaa import multiply
 
 
-#### for sub-main
-# from aaa import a_var
-# b_var2 = b_var1 + a_var
+def bbb(a, b):
+    return multiply(a, b) + (a+b)
