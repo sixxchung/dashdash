@@ -1,8 +1,7 @@
 from dash import Dash
 
 import dash_admin_components as dac
-from . import dashMain
-from dashMain.view import navbar, sidebar, body, controlbar, footer
+from app.dashMain.view import navbar, sidebar, body, controlbar, footer
 import flask
 
 import dashPages

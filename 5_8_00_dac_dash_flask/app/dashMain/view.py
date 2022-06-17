@@ -1,26 +1,13 @@
 import importlib
-# import os
-# import sys
-
 from dash import html, dcc
 import dash_admin_components as dac
-#import app.dashPages as dPages
 
-# sys.path.append(
-#     os.path.dirname(os.path.abspath(
-#         os.path.dirname(os.path.dirname(__file__))))
-# )
-
-MENU_ITEMS = ["stock"]
-
-
+MENU_ITEMS = ("basic_cards", "social_cards", "tab_cards",
+              "basic_boxes", "value_boxes",
+              "gallery_1", "gallery_2")
 def load_module(module_nm):
-    myModule = f"app.dashPages.{module_nm}.view"
-    print(myModule)
-    rlt = importlib.import_module(myModule)
+    rlt = importlib.import_module(f"app.dashPages.{module_nm}.view")
     return rlt
-
-
 # basic_cards = load_module('basic_cards')
 for m in MENU_ITEMS:
     locals()[m] = load_module(m)
@@ -33,8 +20,7 @@ body = dac.Body(
     dac.TabItems(tmp_menu_content)
 )
 
-
-# Sidebar
+# ---------- Sidebar
 subitems = [
     dac.SidebarMenuSubItem(id='sideMenu_gallery_1',
                            label='Gallery 1',
@@ -53,7 +39,7 @@ sidebar = dac.Sidebar(
         children=[
             dac.SidebarHeader(
                 children="Cards"),  # ------------------------------
-            dac.SidebarMenuItem(id='sideMenu_stock',
+            dac.SidebarMenuItem(id='sideMenu_basic_cards',
                                 label='Basic cards', icon='box'),
             dac.SidebarMenuItem(id='sideMenu_social_cards',
                                 label='Social cards', icon='id-card'),
@@ -82,8 +68,7 @@ sidebar = dac.Sidebar(
     opacity=0.8
 )
 
-
-# Footer
+# ---------- Footer
 footer = dac.Footer(
     html.A("@DawidKopczyk, Quantee",
            href="https://twitter.com/quanteeai",
@@ -92,7 +77,7 @@ footer = dac.Footer(
     right_text="2019"
 )
 
-# Navbar
+# ---------- Navbar
 top_right_ui = dac.NavbarDropdown(
     badge_label="!",
     badge_color="danger",
@@ -111,14 +96,13 @@ top_right_ui = dac.NavbarDropdown(
 )
 
 navbar = dac.Navbar(
-    id="nav_bread",
+    id = "nav_bread",
     color="white",
     text="I can write text in the navbar!",  # os.environ.get("WELCOME"),
     children=top_right_ui
 )
 
-
-# Controlbar
+# ---------- Controlbar
 controlbar = dac.Controlbar(
     children=[
         html.Br(),
@@ -131,9 +115,3 @@ controlbar = dac.Controlbar(
     title="My right sidebar",
     skin="light"
 )
-
-
-# =============================================================================
-# App Layout
-# =============================================================================
-#app.layout = dac.Page([navbar, sidebar, body, controlbar, footer])

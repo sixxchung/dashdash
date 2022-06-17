@@ -14,21 +14,22 @@ import dash_admin_components as dac
 MENU_ITEMS = ["stock"]
 
 
-def load_module(module_nm):
-    myModule = f"app.dashPages.{module_nm}.view"
-    print(myModule)
-    rlt = importlib.import_module(myModule)
-    return rlt
+# def load_module(module_nm):
+#     myModule = f"app.dashPages.{module_nm}.view"
+#     print(myModule)
+#     rlt = importlib.import_module(myModule)
+#     return rlt
 
 
-# basic_cards = load_module('basic_cards')
-for m in MENU_ITEMS:
-    locals()[m] = load_module(m)
+# # basic_cards = load_module('basic_cards')
+# for m in MENU_ITEMS:
+#     locals()[m] = load_module(m)
 
 # =============================================================================
 # Dash Admin Components
 # =============================================================================
-tmp_menu_content = [eval(f'{m}.content') for m in MENU_ITEMS]
+#tmp_menu_content = [eval(f'{m}.content') for m in MENU_ITEMS]
+tmp_menu_content = None
 body = dac.Body(
     dac.TabItems(tmp_menu_content)
 )
@@ -54,7 +55,7 @@ sidebar = dac.Sidebar(
             dac.SidebarHeader(
                 children="Cards"),  # ------------------------------
             dac.SidebarMenuItem(id='sideMenu_stock',
-                                label='Basic cards', icon='box'),
+                                label='Stock', icon='box'),
             dac.SidebarMenuItem(id='sideMenu_social_cards',
                                 label='Social cards', icon='id-card'),
             dac.SidebarMenuItem(id='sideMenu_tab_cards',

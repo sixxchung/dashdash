@@ -1,5 +1,6 @@
-from sub.bbb import bbb
-#print(f"main b_var2 => {bbb.b_var2}")
+import sub
+import sub.sub_deep.ccc as deep
 
 if __name__ == "__main__":
-    print(bbb(1, 2))
+    print(sub.bbb.b_uf(1, 2))
+    print(deep.c_uf(3))
